@@ -1,0 +1,65 @@
+.link {
+  text-decoration: none;
+  color: inherit;
+}
+
+.card-container {
+  width: 25vmax;
+  height: 25vmax;
+  margin: 2vmax;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  background-color: #e5e5e5;
+  box-shadow: 5px 5px 11px #6D6D6D;
+  transition: box-shadow 0.2s ease-in-out, transform 0.2s ease-in-out;
+}
+
+.card-container:hover {
+  box-shadow: 8px 8px 11px #6D6D6D;
+  transform: scale(1.05);
+}
+
+.title {
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  text-align: center;
+  width: 20vmax;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  margin: 0;
+}
+
+.article-img {
+  width: 20vmax;
+  height: 12vmax;
+  object-fit: cover; 
+  border-radius: 4px;
+}
+
+
+.card-container:hover .title {
+  color: #007BFF; 
+}
+
+
+@media (max-width: 600px) {
+  .card-container {
+    width: 100%;
+    height: 300px; 
+    margin: 10px 0;
+  }
+
+  .title {
+    width: 80%; 
+    font-size: 16px; 
+  }
+
+  .article-img {
+    width: 100%;
+    height: 40%; 
+  }
+}
