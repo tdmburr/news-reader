@@ -4,13 +4,14 @@
 // Some sort of search, filter, OR sort
 
 import React from 'react'
+import './ArticleCard.css'
 
 const ArticleCard = ( { data } ) => {
+
   return (
-    <div className='article-container'>
-      <img src={data.urlToImage} className='article-img' alt='World News Article'/>
-      <h2 className='title'>{data.title}</h2>
-      
+    <div className='card-container'>
+        <img src={data.urlToImage} className='article-img' alt='US News Article'/>
+        <h2 className='title'> Headline: {data.title}</h2>
     </div>
   )
 }
