@@ -1,16 +1,25 @@
 import './App.css';
 import { useEffect, useState } from 'react'
 import { Route, Switch, Redirect } from 'react-router-dom'
-import ArticleContainer from '../ArticleContainer/ArticleContainer'
 import ArticleDetails from '../ArticleDetails/ArticleDetails'
 import Header from '../Header/Header'
-import apiCall from '../../apiCalls'
+import acquireInfo from '../../apiCalls'
 
 
 function App() {
+
+  const [stories, setStories] = useState('')
+  const [newError, setError] = useState('')
+
+  useEffect(() => {
+    acquireInfo()
+    .then(data => console.log(data.articles))
+  }, [])
+
   return (
     <div>
-      <h1>Cool H1</h1>
+      <Header />
+
     </div>
   )
 }
