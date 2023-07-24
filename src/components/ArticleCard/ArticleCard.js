@@ -1,20 +1,25 @@
-// A list of articles (headline, image, description if present, date)
-// A “detailed” view for each article (headline, image, date, content, source)
-// Articles in the list must link to a detailed article view within your app (linking to the source website does not fulfill this requirement)
-// Some sort of search, filter, OR sort
+import React from 'react';
+import { NavLink } from 'react-router-dom';
+import './ArticleCard.css';
 
-import React from 'react'
-import './ArticleCard.css'
-
-const ArticleCard = ( { data } ) => {
-
+const ArticleCard = ({ data, index }) => {
   return (
-    <div className='card-container'>
-        <img src={data.urlToImage} className='article-img' alt='US News Article'/>
-        <h2 className='title'> Headline: {data.title}</h2>
-    </div>
-  )
-}
+    <NavLink to={`/article/${index}`} className='link'>
+      <div className='card-container'>
+        {data.urlToImage ? (
+          <img src={data.urlToImage} className='article-img' alt='US News Article' />
+        ) : (
+          <div className='placeholder-image'>Image Not Available</div>
+        )}
+        {data.title ? (
+          <h2 className='title'> Headline: {data.title}</h2>
+        ) : (
+          <h2 className='title'>No Title Available</h2>
+        )}
+      </div>
+    </NavLink>
+  );
+};
 
 export default ArticleCard;
 
