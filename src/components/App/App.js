@@ -28,14 +28,26 @@ function App() {
     if (isLoading) {
       return <p>Loading...</p>;
     } else if (newError) {
-      return <p>{newError}</p>;
+      return (
+        <div className="error-message-container">
+          <div className="error-message">{newError}</div>
+        </div>
+      );
     } else {
 
       const filteredStories = stories.filter(story => story.title.toLowerCase().includes(searchKeyword.toLowerCase()));
 
-      return filteredStories.map((story, i) => (
-        <ArticleCard data={story} key={i} index={i} />
-      ));
+      if (filteredStories.length === 0) {
+        return (
+          <div className="no-articles-container">
+            <div className="no-articles-message">No articles found matching the provided search criteria.</div>
+          </div>
+        );
+      } else {
+        return filteredStories.map((story, i) => (
+          <ArticleCard data={story} key={i} index={i} />
+        ));
+      }
     }
   };
 
