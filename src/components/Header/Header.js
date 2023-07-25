@@ -1,8 +1,29 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import './Header.css';
-import { Link } from 'react-router-dom';
+import { Link, useParams, useLocation } from 'react-router-dom';
+
 
 const Header = ({ showSearchBar = true, handleSearch }) => {
+  const params = useParams()
+  const [searchTerm, setSearchTerm] = useState('')
+  const location = useLocation();
+
+  const handleChange = (e) => {
+    setSearchTerm(e.target.value)
+  }
+
+  useEffect(() => {
+      handleSearch(searchTerm)
+  }, [searchTerm])
+
+  useEffect(() => {
+    setSearchTerm('')
+  }, [params.index])
+
+  if (location.pathname.startsWith('/article')) {
+    return null;
+  }
+
   return (
     <div className='header'>
       <Link to='/' className='link'>
@@ -14,7 +35,7 @@ const Header = ({ showSearchBar = true, handleSearch }) => {
             type='search'
             placeholder='Article Search'
             className='search-bar'
-            onChange={handleSearch}
+            onChange={(e) => handleChange(e)}
             required
           />
         </form>
@@ -24,3 +45,4 @@ const Header = ({ showSearchBar = true, handleSearch }) => {
 };
 
 export default Header;
+

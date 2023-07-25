@@ -1,10 +1,11 @@
 import './App.css';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useMemo } from 'react';
 import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
 import ArticleDetails from '../ArticleDetails/ArticleDetails';
 import Header from '../Header/Header';
 import acquireInfo from '../../apiCalls';
 import ArticleCard from '../ArticleCard/ArticleCard';
+
 
 function App() {
   const [stories, setStories] = useState([]);
@@ -24,6 +25,12 @@ function App() {
       });
   }, []);
 
+  const filteredStories = useMemo(() => {
+    return stories.filter(story =>
+      story.title.toLowerCase().includes(searchKeyword.toLowerCase())
+    );
+  }, [stories, searchKeyword]);
+
   const createCard = () => {
     if (isLoading) {
       return <p>Loading...</p>;
@@ -33,26 +40,21 @@ function App() {
           <div className="error-message">{newError}</div>
         </div>
       );
+    } else if (filteredStories.length === 0) {
+      return (
+        <div className="no-articles-container">
+          <div className="no-articles-message">No articles found matching the provided search criteria.</div>
+        </div>
+      );
     } else {
-
-      const filteredStories = stories.filter(story => story.title.toLowerCase().includes(searchKeyword.toLowerCase()));
-
-      if (filteredStories.length === 0) {
-        return (
-          <div className="no-articles-container">
-            <div className="no-articles-message">No articles found matching the provided search criteria.</div>
-          </div>
-        );
-      } else {
-        return filteredStories.map((story, i) => (
-          <ArticleCard data={story} key={i} index={i} />
-        ));
-      }
+      return filteredStories.map((story) => (
+        <ArticleCard data={story} key={story.url}/>
+      ));
     }
   };
 
-  const handleSearch = (e) => {
-    setSearchKeyword(e.target.value);
+  const handleSearch = (value) => {
+      setSearchKeyword(value)
   };
 
   return (
@@ -60,18 +62,19 @@ function App() {
         <Switch>
           <Route exact path="/">
             <Header showSearchBar={true} handleSearch={handleSearch} />
-            <section className="article-card-container">{createCard()}</section>
+            <section className="article-card-container">
+              {createCard()}
+            </section>
           </Route>
-          <Route exact path="/article/:index" render={({ match }) => (
-            stories[match.params.index] ? (
-              <>
-                <Header showSearchBar={false} />
-                <ArticleDetails data={stories[match.params.index]} />
-              </>
-            ) : (
-              <Redirect to="/" />
-            )
-          )} />
+          <Route exact path="/article/:url" render={({ match }) => (
+          filteredStories.find(story => story.url === decodeURIComponent(match.params.url)) ? (
+            <>
+              <ArticleDetails data={filteredStories.find(story => story.url === decodeURIComponent(match.params.url))} />
+            </>
+          ) : (
+            <Redirect to="/" />
+          )
+        )} />
           <Redirect to="/" />
         </Switch>
     </Router>
@@ -79,3 +82,4 @@ function App() {
 }
 
 export default App;
+

@@ -19,6 +19,10 @@ const ArticleDetails = ({ data }) => {
   const { author, title, description, urlToImage, publishedAt, content } = data;
   const formattedPublishedAt = formatPublishedDate(publishedAt);
 
+  const handleRefreshClick = () => {
+    window.location.reload();
+  };
+
   return (
     <div className="article-details-container">
       {urlToImage && <img className="article-image" src={urlToImage} alt="Article" />}
@@ -27,6 +31,11 @@ const ArticleDetails = ({ data }) => {
       <p className="article-published-date">Published At: {formattedPublishedAt}</p>
       <p className="article-description">{description}</p>
       {content && <p className="article-content">{content}</p>}
+      <div className="refresh-button-container">
+        <button className="refresh-button" onClick={handleRefreshClick}>
+          Return Home
+        </button>
+      </div>
     </div>
   );
 };
