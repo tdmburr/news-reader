@@ -1,5 +1,5 @@
 import './App.css';
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
 import ArticleDetails from '../ArticleDetails/ArticleDetails';
 import Header from '../Header/Header';
@@ -10,6 +10,7 @@ function App() {
   const [stories, setStories] = useState([]);
   const [newError, setError] = useState('');
   const [isLoading, setIsLoading] = useState(true);
+  const [searchKeyword, setSearchKeyword] = useState('');
 
   useEffect(() => {
     acquireInfo()
@@ -29,30 +30,38 @@ function App() {
     } else if (newError) {
       return <p>{newError}</p>;
     } else {
-      return stories.map((story, i) => (
+
+      const filteredStories = stories.filter(story => story.title.toLowerCase().includes(searchKeyword.toLowerCase()));
+
+      return filteredStories.map((story, i) => (
         <ArticleCard data={story} key={i} index={i} />
       ));
     }
   };
 
+  const handleSearch = (e) => {
+    setSearchKeyword(e.target.value);
+  };
+
   return (
     <Router>
-      <div>
-        <Header />
         <Switch>
           <Route exact path="/">
+            <Header showSearchBar={true} handleSearch={handleSearch} />
             <section className="article-card-container">{createCard()}</section>
           </Route>
           <Route exact path="/article/:index" render={({ match }) => (
             stories[match.params.index] ? (
-              <ArticleDetails data={stories[match.params.index]} />
+              <>
+                <Header showSearchBar={false} />
+                <ArticleDetails data={stories[match.params.index]} />
+              </>
             ) : (
               <Redirect to="/" />
             )
           )} />
           <Redirect to="/" />
         </Switch>
-      </div>
     </Router>
   );
 }
