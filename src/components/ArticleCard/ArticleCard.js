@@ -2,9 +2,9 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import './ArticleCard.css';
 
-const ArticleCard = ({ data, index }) => {
+const ArticleCard = ({ data }) => {
   return (
-    <NavLink to={`/article/${index}`} className='link'>
+    <NavLink to={`/article/${encodeURIComponent(data.url)}`} className='link'>
       <div className='card-container'>
         {data.urlToImage ? (
           <img src={data.urlToImage} className='article-img' alt='US News Article' />
