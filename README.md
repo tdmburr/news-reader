@@ -21,6 +21,14 @@ This was a take home challenge project assigned in Mod 4 to simulate an in field
 The challenge was to limit yourself to a 6-8 hour implementation period, with a 1 hour planning period. 
 This challenge was completed in roughly 8 hours.
 
+## Learning Goals
+
+- A strong understanding of React JS and Front-End best practices
+- Your ability to prioritize for MVP
+- An understanding of basic usability practices and standards
+- A clear hierarchy of information
+- Clean, well thought out code
+
 ## Initial Wireframe
 
 ![Screen Shot 2023-07-27 at 11 04 56 AM](https://github.com/tdmburr/news-reader/assets/109426263/0c69537d-1eaf-4137-8def-d3c6f212b309)
