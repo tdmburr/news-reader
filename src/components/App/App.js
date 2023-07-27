@@ -48,7 +48,7 @@ function App() {
       );
     } else {
       return filteredStories.map((story) => (
-        <ArticleCard data={story} key={story.url}/>
+        <ArticleCard data={story} key={story.url} />
       ));
     }
   };
