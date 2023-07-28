@@ -1,70 +1,75 @@
-# Getting Started with Create React App
+## Abstract
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This was a take home challenge to create a news reading application using the News API. The application allows you to view the top 20 headlines for a specific category such as technology. As a user you'll be able to click an article to view more details specific to that article. The application also includes a search function that filters through the titles of the articles for letters/words that are case insenstive and includes error handling to indicate if an article doesn't exist with the typed in search criteria.
 
-## Available Scripts
+## Install Instructions
 
-In the project directory, you can run:
+- Fork the repository to your GitHub account.
+- Copy the SSH key from GitHub by navigating to the code dropdown.
+- Using the terminal, run the following command: git clone [SSH key here].
+- Change into the repository directory: cd news-reader.
+- Open the repository in your preferred code editor, such as Visual Studio Code.
+- Install the necessary dependencies by running: npm install.
+- Start the application by running: npm start.
+- Click the hyperlink where the project is running to launch the application in your web browser, or enter http://localhost:3000/ into your web browser's address bar.
 
-### `npm start`
+- The API is available at [News API](https://newsapi.org/)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Context
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+This was a take home challenge project assigned in Mod 4 to simulate an in field technical take home challenge. 
+The challenge was to limit yourself to a 6-8 hour implementation period, with a 1 hour planning period. 
+This challenge was completed in roughly 8 hours.
 
-### `npm test`
+## Learning Goals
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- A strong understanding of React JS and Front-End best practices
+- Your ability to prioritize for MVP
+- An understanding of basic usability practices and standards
+- A clear hierarchy of information
+- Clean, well thought out code
 
-### `npm run build`
+## Initial Wireframe
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+![Screen Shot 2023-07-27 at 11 04 56 AM](https://github.com/tdmburr/news-reader/assets/109426263/0c69537d-1eaf-4137-8def-d3c6f212b309)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Preview of App
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+![News-demo](https://github.com/tdmburr/news-reader/assets/109426263/988e9798-bec6-4720-9102-557077879823)
 
-### `npm run eject`
+## Contributors
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+| [<img alt="Trey Marshall" width="100" src="https://user-images.githubusercontent.com/120869196/253777102-92b26459-2e10-497c-91f2-7bb784de7d66.png"/>](https://www.linkedin.com/in/tdmars/) | 
+| ------------ |
+| Trey Marshall |
+| Front-end Developer | 
+| [GitHub](https://github.com/tdmburr) | 
+| [LinkedIn](https://www.linkedin.com/in/tdmars/) | 
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+<br>
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## Wins + Challenges
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+Wins: This was my first solo implementation of using React Hooks. Learning and implementing both new (useMemo) and familiar (such as useEffect) hooks was a great learning experience from only having previous (solo) experience using a class based component system.
 
-## Learn More
+Challenges: In the same vein as the wins... Learning how to effectively use Hooks and learning what they represented in comparison to a class based component (such as the similarity between useEffect and componentDidMount) was a challenge. 
+Additionally, near completion of the project, a bug was discovered regarding the indexes not appropriately updating (IE: once an article was clicked, the wrong data was displayed as the previous index had not been updated) that was fixed through refactoring (learning useMemo) and re-assessing the previous code.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## Technologies Used
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+- RESTful API
+- React Framework
+- Router v5
+- LightHouse
+- GitHub Project Board
+- JavaScript
+- CSS
+- HTML
 
-### Code Splitting
+## Possible Updates / Revisions
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+- Add placeholder images for images that return as "null"
+- Expanding to use an additional API call to filter through more than one static category.
 
-### Analyzing the Bundle Size
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
 
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
